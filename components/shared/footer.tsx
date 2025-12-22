@@ -63,26 +63,25 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Payment Channels */}
+          
+        </div>
+{/* Payment Channels */}
           <div>
             <h3 className="font-bold text-gray-800 mb-5 uppercase tracking-wider">Payment Channels</h3>
             <div className="flex flex-wrap gap-4">
               {/* Replace these with your actual payment logo images in /public/payment/ */}
-              <Image src="/payment/visa.png" alt="Visa" width={60} height={40} className="rounded bg-white p-2 shadow" />
-              <Image src="/payment/mastercard.png" alt="Mastercard" width={60} height={40} className="rounded bg-white p-2 shadow" />
-              <Image src="/payment/bkash.png" alt="bKash" width={60} height={40} className="rounded bg-white p-2 shadow" />
-              <Image src="/payment/nagad.png" alt="Nagad" width={60} height={40} className="rounded bg-white p-2 shadow" />
-              <Image src="/payment/rocket.png" alt="Rocket" width={60} height={40} className="rounded bg-white p-2 shadow" />
-              <Image src="/payment/upay.png" alt="Upay" width={60} height={40} className="rounded bg-white p-2 shadow" />
-              <Image src="/payment/tap.png" alt="Tap" width={60} height={40} className="rounded bg-white p-2 shadow" />
-              <Image src="/payment/citybank.png" alt="City Bank" width={60} height={40} className="rounded bg-white p-2 shadow" />
-              <Image src="/payment/brac.png" alt="BRAC Bank" width={60} height={40} className="rounded bg-white p-2 shadow" />
-              <Image src="/payment/uco.png" alt="UCO" width={60} height={40} className="rounded bg-white p-2 shadow" />
+              <Image src="/visa.png" alt="Visa" width={80} height={40} className="rounded bg-white p-1 shadow" />
+              <Image src="/master-card.png" alt="Mastercard" width={80} height={40} className="rounded bg-white p-1 shadow" />
+              <Image src="/bkash.png" alt="bKash" width={80} height={40} className="rounded bg-white p-1 shadow" />
+              <Image src="/nagad.png" alt="Nagad" width={80} height={40} className="rounded bg-white p-1 shadow" />
+              <Image src="/rocket.png" alt="Rocket" width={80} height={40} className="rounded bg-white p-1 shadow" />
+              <Image src="/upi.png" alt="Upay" width={80} height={40} className="rounded bg-white p-1 shadow" />
+              <Image src="/city.png" alt="City Bank" width={80} height={40} className="rounded bg-white p-1 shadow" />
+              <Image src="/brac.png" alt="BRAC Bank" width={80} height={40} className="rounded bg-white p-1 shadow" />
+              <Image src="/ucb.png" alt="UCO" width={80} height={40} className="rounded bg-white p-1 shadow" />
               {/* Add more as needed */}
             </div>
           </div>
-        </div>
-
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-gray-300">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-600">
