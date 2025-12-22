@@ -1,4 +1,5 @@
 "use client";
+import LogoMarquee from "@/components/logoMarquee";
 import { Button } from "@/components/ui/button";
 import { ArrowBigRight, Mail, MapPin, Pause, Play } from "lucide-react";
 import Link from "next/link";
@@ -127,6 +128,11 @@ const HomePage = () => {
             </p>
           </div>
         </div>
+      </div>
+      {/* logo marquee */}
+      <div className="">
+      <LogoMarquee />
+
       </div>
     </div>
   );
