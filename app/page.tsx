@@ -1,5 +1,6 @@
 "use client";
 import LogoMarquee from "@/components/logoMarquee";
+import Process from "@/components/process";
 import { Button } from "@/components/ui/button";
 import { ArrowBigRight, Mail, MapPin, Pause, Play } from "lucide-react";
 import Link from "next/link";
@@ -132,6 +133,9 @@ const HomePage = () => {
       {/* logo marquee */}
       <div className="">
       <LogoMarquee />
+      <div className="">  
+        <Process/>
+      </div>
 
       </div>
     </div>
