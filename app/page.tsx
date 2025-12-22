@@ -1,4 +1,5 @@
 "use client";
+import Apparels from "@/components/Apparels";
 import LogoMarquee from "@/components/logoMarquee";
 import Process from "@/components/process";
 import { Button } from "@/components/ui/button";
@@ -135,6 +136,10 @@ const HomePage = () => {
       <LogoMarquee />
       <div className="">  
         <Process/>
+      </div>
+      <div className="">
+        {/* Apparels */}
+        <Apparels/>
       </div>
 
       </div>
