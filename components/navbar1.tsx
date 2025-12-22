@@ -149,8 +149,8 @@ const Navbar = ({
 
   const user=null 
   return (
-    <section className={cn("py", className)}>
-      <div className="container mx-auto fixed top-0 z-50 flex w-full flex-col gap-4 bg-background px-4 py-2 shadow-sm backdrop-blur-sm">
+    <section className={cn("container mx-auto fixed top-0 z-50 right-0 left-0  gap-4 bg-background px-4 py-2 shadow-sm backdrop-blur-sm", className)}>
+      <div className="">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
           <div className="flex items-center gap-6">
