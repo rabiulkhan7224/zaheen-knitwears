@@ -109,7 +109,7 @@ const HomePage = () => {
 
       {/* location and email */}
       <div className="">
-        <div className="container mx-auto flex justify-start  items-center py-4 px-4">
+        <div className="container mx-auto flex justify-start gap-2  items-center py-4 px-4">
           <div className="flex items-center gap-2 text-gray-500">
             <MapPin className="text-secondary" />{" "}
             <div className="">

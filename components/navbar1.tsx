@@ -27,6 +27,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
+import { use } from "react";
+import { usePathname } from "next/navigation";
 
 interface MenuItem {
   title: string;
@@ -147,6 +149,12 @@ const Navbar = ({
   className,
 }: Navbar1Props) => {
 
+  // hidden path navbar login and dashboard logic can be added here
+  const hidderPaths = ['/login', '/signup', '/dashboard'];
+  const currentPath= usePathname();
+  if (hidderPaths.includes(currentPath || '')) {
+    return null;
+  }
   const user=null 
   return (
     <section className={cn("container mx-auto fixed top-0 z-50 right-0 left-0  gap-4 bg-background px-4 py-2 shadow-sm backdrop-blur-sm", className)}>

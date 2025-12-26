@@ -24,9 +24,18 @@ export default function Footer() {
             {/* Address, Email, Phone */}
             <div className="space-y-4 text-gray-600 text-sm">
               <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-gray-500 mt-0.5 flex-shrink-0" />
-                <p>29 SE 2nd Ave, Miami Florida 33131, United States</p>
-              </div>
+    <a
+      href="https://www.google.com/maps/search/?api=1&query=29+SE+2nd+Ave,+Miami,+Florida+33131,+United+States"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-start gap-3 hover:text-orange-500 transition group"
+    >
+      <MapPin className="w-5 h-5 text-gray-500 mt-0.5 flex-shrink-0" />
+      <p className="group-hover:underline">
+        29 SE 2nd Ave, Miami Florida 33131, United States
+      </p>
+    </a>
+  </div>
 
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-gray-500 flex-shrink-0" />
@@ -37,7 +46,12 @@ export default function Footer() {
 
               <div className="flex items-center gap-3 text-lg font-semibold text-gray-800">
                 <Phone className="w-5 h-5 text-gray-500 flex-shrink-0" />
-                <span>(+92) 3942 7879</span>
+                <a
+      href="tel:+9239427879"
+      className="hover:text-orange-500 transition"
+    >
+      (+92) 3942 7879
+    </a>
               </div>
             </div>
           </div>
