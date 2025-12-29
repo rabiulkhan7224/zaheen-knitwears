@@ -4,6 +4,8 @@
 
 - **Live demo:** https://zaheen-knitwears.vercel.app/ ✅
 - **Backend (API):** https://zaheen-knitwears-backend.vercel.app/ 🔗
+- **Test Credentials
+Admin Account (full product/category management): Email: admin@gmail.com Password: Admin@123
 
 ---
 
