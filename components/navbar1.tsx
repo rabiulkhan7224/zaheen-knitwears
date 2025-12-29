@@ -306,8 +306,7 @@ const Navbar = ({
   );
 };
 
-// Keep your existing renderMenuItem, renderMobileMenuItem, SubMenuLink unchanged
-// ... (same as before)
+
 
 
 
@@ -331,7 +330,7 @@ const renderMenuItem = (item: MenuItem) => {
     <NavigationMenuItem key={item.title}>
       <NavigationMenuLink
         href={item.url}
-        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
+        className="group inline-flex h-10 w-max items-center justify-center rounded-md  px-4 py-2 text-sm font-medium transition-colors hover:bg-muted hover:text-accent-foreground"
       >
         {item.title}
       </NavigationMenuLink>

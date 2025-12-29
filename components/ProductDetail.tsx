@@ -47,7 +47,7 @@ export default function ProductDetail({ product }: { product: Product }) {
   };
 
   return (
-    <div className="container mx-auto py-12 px-4">
+    <div className="container mx-auto py-12 mt-12 px-4">
       <div className="grid md:grid-cols-2 gap-12">
         {/* Images */}
         <div>
@@ -128,7 +128,7 @@ export default function ProductDetail({ product }: { product: Product }) {
           <Button
             onClick={handleAddToCart}
             size="lg"
-            className="w-full mb-4 flex items-center justify-center gap-3"
+            className="w-full bg-secondary mb-4 flex items-center justify-center gap-3"
           >
             <ShoppingCart className="w-6 h-6" />
             {cartItem ? 'Add More to Cart' : 'Add to Cart'}

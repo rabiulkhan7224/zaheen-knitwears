@@ -5,6 +5,7 @@ import { ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useCartStore } from "@/app/store/cartStore";
+import Link from "next/link";
 
 const fetcher = (url: string) =>
   fetch(url).then((res) => {
@@ -210,7 +211,8 @@ function ProductCard({
             {cartItem ? `Add More (${cartItem.quantity})` : "Add to Cart"}
           </Button>
           <Button className="flex-1 bg-secondary text-white px-4 py-2 rounded hover:bg-secondary-dark transition">
-            Buy Now
+         
+            <Link href={`/products/${product._id}`}>Buy Now</Link>
           </Button>
           {/* Stock Info */}
         </div>

@@ -72,12 +72,9 @@ export default function AuthSection() {
 
     toast.success("Login successful!");
 
-    // Role-based redirect
-    if (user.role === "admin") {
-      router.push("/admin/dashboard");
-    } else {
+   
       router.push("/dashboard");
-    }
+    
 
      
     } catch (error) {
