@@ -2,10 +2,11 @@
 import Apparels from "@/components/Apparels";
 import LogoMarquee from "@/components/logoMarquee";
 import Process from "@/components/process";
+import ProductsSkeleton from "@/components/ProductsSkeleton";
 import { Button } from "@/components/ui/button";
 import { ArrowBigRight, Mail, MapPin, Pause, Play } from "lucide-react";
 import Link from "next/link";
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 
 const HomePage = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -139,7 +140,9 @@ const HomePage = () => {
       </div>
       <div className="">
         {/* Apparels */}
-        <Apparels/>
+        <Suspense fallback={<ProductsSkeleton />}>
+        <Apparels />
+      </Suspense>
       </div>
 
       </div>

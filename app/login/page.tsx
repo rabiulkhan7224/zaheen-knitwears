@@ -14,6 +14,10 @@ import { FaFacebook, } from 'react-icons/fa';
 import { BsApple } from 'react-icons/bs';
 import { FcGoogle } from "react-icons/fc";
 import Link from 'next/link';
+import axios from 'axios';
+import { GoogleLogin } from "@react-oauth/google";
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 // Login Schema
 const loginSchema = z.object({
@@ -23,6 +27,7 @@ const loginSchema = z.object({
 
 // Signup Schema
 const signupSchema = z.object({
+  name:z.string(),
   email: z.string().email('Invalid email address'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
   confirmPassword: z.string(),
@@ -37,8 +42,9 @@ type SignupFormData = z.infer<typeof signupSchema>;
 export default function AuthSection() {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+  const [loading,setLoading]=useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+  const router=useRouter()
   // Login Form
   const loginForm = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -48,17 +54,89 @@ export default function AuthSection() {
   // Signup Form
   const signupForm = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
-    defaultValues: { email: '', password: '', confirmPassword: '' },
+    defaultValues: {name:"", email: '', password: '', confirmPassword: '' },
+    
   });
 
-  const onLoginSubmit = (data: LoginFormData) => {
-    console.log('Login:', data);
-    // Handle login
+  const onLoginSubmit = async (data: LoginFormData) => {
+    setLoading(true);
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_API}/auth/login`, data);
+      console.log('Login successful:', res.data);
+      
+    const { token, user } = res.data;
+
+    // Store auth data (localStorage or cookies)
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", user);
+
+    toast.success("Login successful!");
+
+    // Role-based redirect
+    if (user.role === "admin") {
+      router.push("/admin/dashboard");
+    } else {
+      router.push("/dashboard");
+    }
+
+     
+    } catch (error) {
+      console.error('Login failed:', error);
+      // Show error toast
+    toast.success('Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const onSignupSubmit = (data: SignupFormData) => {
-    console.log('Signup:', data);
-    // Handle signup
+  const onSignupSubmit = async (data: SignupFormData) => {
+    setLoading(true);
+    try {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_API}/auth/register`, data);
+      console.log('Signup successful:', res.data);
+      // Show success toast
+     toast.success('Signup successful!');
+      setIsLogin(true);
+      signupForm.reset()
+    } catch (error) {
+      console.error('Signup failed:', error);
+      // Show error toast
+      toast.success('Signup failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // google login
+    const handleSuccess = async (credentialResponse: any) => {
+    const token = {
+      token: credentialResponse?.credential,
+    };
+    
+    
+    try {
+      setLoading(true);
+      
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_API}/auth/google-token`, token);
+      console.log(res);
+      if ( res.data) {
+        const { token ,data:{user}} = res.data;
+
+       localStorage.setItem("token", token);
+    localStorage.setItem("user", user);
+
+    toast.success("Login successful!");
+        
+         router.push("/dashboard");
+      
+        
+      } 
+    } catch (error: any) {
+      console.error("Google login error:", error);
+      toast.error(error?.message || "Google login failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -174,6 +252,23 @@ export default function AuthSection() {
               <form onSubmit={signupForm.handleSubmit(onSignupSubmit)} className="space-y-5">
                 {/* Email */}
                 <div className="space-y-2">
+                  <Label htmlFor="signup-name">Name</Label>
+                  <div className="relative">
+                  
+                    <Input
+                      id="signup-name"
+                      type="text"
+                      required
+                      placeholder="Enter your name"
+                      className="pl-10 h-12 rounded-xl bg-gray-50 border-gray-200"
+                      {...signupForm.register('name')}
+                    />
+                  </div>
+                  {signupForm.formState.errors.name && (
+                    <p className="text-sm text-red-500">{signupForm.formState.errors.name.message}</p>
+                  )}
+                </div>
+                <div className="space-y-2">
                   <Label htmlFor="signup-email">Email</Label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
@@ -269,9 +364,13 @@ export default function AuthSection() {
               <Button variant="outline" className="h-12 rounded-xl">
                 <BsApple />
               </Button>
-              <Button variant="outline" className="h-12 rounded-xl">
-                <FcGoogle />
-              </Button>
+               <GoogleLogin
+        onSuccess={(credentialResponse) => handleSuccess(credentialResponse)}
+        onError={() => {
+    console.log('Login Failed');
+    
+  }}
+      />
             </div>
           </CardContent>
         </Card>
